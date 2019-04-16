@@ -1,0 +1,91 @@
+﻿<?xml version="1.0" encoding="utf-8" ?>
+<ContentPage xmlns="http://xamarin.com/schemas/2014/forms"
+             xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
+             xmlns:local="clr-namespace:RecolorImageExample"
+             x:Class="RecolorImageExample.MainPage"
+             xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
+             xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
+             xmlns:iOsSpecific="clr-namespace:Xamarin.Forms.PlatformConfiguration.iOSSpecific;assembly=Xamarin.Forms.Core"
+             mc:Ignorable="d"
+             d:DataContext="{d:DesignInstance local:MainPageViewModel}"
+             iOsSpecific:Page.UseSafeArea="True">
+
+    <Grid Margin="15">
+        <Grid.RowDefinitions>
+            <RowDefinition Height="Auto"/>
+            <RowDefinition Height="Auto"/>
+            <RowDefinition Height="Auto"/>
+            <RowDefinition Height="Auto"/>
+            <RowDefinition Height="*"/>
+        </Grid.RowDefinitions>
+        <Grid.ColumnDefinitions>
+            <ColumnDefinition Width="Auto" />
+            <ColumnDefinition Width="*" />
+            <ColumnDefinition Width="Auto" />
+        </Grid.ColumnDefinitions>
+        
+        <Label
+            Text="Red" 
+            Grid.Row="0"
+            Grid.Column="0"/>
+        <Slider 
+            Minimum="0"
+            Maximum="255"
+            Value="{Binding Red, Mode=TwoWay, UpdateSourceEventName=PropertyChanged}"
+            Grid.Row="0"
+            Grid.Column="1"/>
+        <Label 
+            Text="{Binding Red, Mode=OneWay, UpdateSourceEventName=PropertyChanged}"
+            Grid.Row="0"
+            Grid.Column="2"/>
+
+        <Label
+            Text="Green" 
+            Grid.Row="1"
+            Grid.Column="0"/>
+        <Slider 
+            Minimum="0"
+            Maximum="255"
+            Value="{Binding Green, Mode=TwoWay, UpdateSourceEventName=PropertyChanged}"
+            Grid.Row="1"
+            Grid.Column="1"/>
+        <Label 
+            Text="{Binding Green, Mode=OneWay, UpdateSourceEventName=PropertyChanged}"
+            Grid.Row="1"
+            Grid.Column="2"/>
+
+        <Label
+            Text="Blue" 
+            Grid.Row="2"
+            Grid.Column="0"/>
+        <Slider 
+            Minimum="0"
+            Maximum="255"
+            Value="{Binding Blue, Mode=TwoWay, UpdateSourceEventName=PropertyChanged}"
+            Grid.Row="2"
+            Grid.Column="1"/>
+        <Label 
+            Text="{Binding Blue, Mode=OneWay, UpdateSourceEventName=PropertyChanged}"
+            Grid.Row="2"
+            Grid.Column="2"/>
+
+        <Button 
+            Text="Update image"
+            Grid.Row="3"
+            Grid.Column="1"
+            Command="{Binding UpdateImageCommand, Mode=OneWay, UpdateSourceEventName=PropertyChanged}"/>
+
+        <local:ColorTransformImage 
+            Grid.Row="4"
+            Grid.Column="0"
+            Grid.ColumnSpan="3"
+            SourceImage="example_image"
+            SourceImageColor="Black"
+            TargetTintColor="{Binding ImageColor, Mode=OneWay, UpdateSourceEventName=PropertyChanged}"
+            HorizontalOptions="Center"
+            HeightRequest="300"
+            WidthRequest="400"/>
+
+    </Grid>
+
+</ContentPage>
